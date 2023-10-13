@@ -20,7 +20,7 @@ class ArtisteController extends AbstractController
         ]);
     }
 
-    #[Route('/artistee{id}', name: 'ficheArtiste', methods:["GET"])]
+    #[Route('/artiste/{id}', name: 'ficheArtiste', methods:["GET"])]
     public function ficheArtiste(Artiste $artiste): Response
     {
              return $this->render('artiste/ficheArtiste.html.twig', [

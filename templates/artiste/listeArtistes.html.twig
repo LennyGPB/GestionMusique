@@ -13,12 +13,12 @@
             <div class="card-body">
              <a href="" class="badge badge-success"><h5 class="card-title"> {{leArtiste.albums|length}} album </h5></a> 
             </div>
-            <img class="mx-auto d-block" src=" {{leArtiste.image}} " alt="">
+            <img class="mx-auto d-block" src="{{leArtiste.image}}" alt="">
             <div class="card-body">
               <p class="card-text">{{leArtiste.description}} </p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"> {% if leArtiste.type == 0 %} 
+              <li class="list-group-item badge bg-primary"> {% if leArtiste.type == 0 %} 
                 Artiste solo {% else %} Groupe {% endif %} </li>
               <li class="list-group-item">{{leArtiste.site}}</li>
             </ul>

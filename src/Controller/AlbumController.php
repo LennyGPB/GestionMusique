@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Album;
+use App\Entity\Labell;
 use App\Repository\AlbumRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 class AlbumController extends AbstractController
 {
@@ -23,11 +24,12 @@ class AlbumController extends AbstractController
         );
         return $this->render('album/listeAlbums.html.twig', [
             'lesAlbums' => $albums,
+
         ]);
     }
 
-    #[Route('/albums{id}', name: 'ficheAlbum', methods:["GET"])]
-    public function fichealbums(Album $albums): Response
+    #[Route('/albums/{id}', name: 'ficheAlbum', methods:["GET"])]
+    public function fichealbums(Album $albums,Labell $leLabel): Response
     {
         return $this->render('album/ficheAlbum.html.twig', [
             'leAlbum' => $albums,

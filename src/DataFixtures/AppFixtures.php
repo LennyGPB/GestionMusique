@@ -43,9 +43,9 @@ class AppFixtures extends Fixture
             $artiste->setId(intval($value[0]))
                      ->setNom($value[1])
                      //->setDescription("<p>". join("</p><p>".$faker->paragraph(5)) . "</p>")
-                     ->setDescription("feojdzhdzhazjazhzapdazdoezdjaazoejdahdpjazihazjhduozahdpçjzoidhzapdzaôdezdezodhezàeidzaoidz")
+                     ->setDescription($faker->text(10))
                      ->setSite($faker->url())
-                     ->setImage("")
+                     ->setImage("https://picsum.photos/100/100")
                      ->setType($value[2]);
                      $manager->persist($artiste);
                      $this->addReference("artiste".$artiste->getID(), $artiste);
@@ -58,7 +58,8 @@ class AppFixtures extends Fixture
             $album->setID(intval($value[0]))
             ->setNom($value[1])
             ->setDate(intval($value[2]))
-            ->setImage($faker->imageUrl(640,480))
+            // ->setImage("$faker->imageUrl(640,480)")
+            ->setImage("https://picsum.photos/100/100")
             ->addStyle($this->getReference("style".$value[3]))
             ->setArtiste($this->getReference("artiste".$value[4]));
             $manager->persist($album);

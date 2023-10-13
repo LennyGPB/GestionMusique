@@ -33,10 +33,17 @@ class Album
     #[ORM\ManyToMany(targetEntity: Style::class, mappedBy: 'albums')]
     private Collection $styles;
 
+    #[ORM\OneToMany(mappedBy: 'album', targetEntity: Label::class)]
+    private Collection $label;
+
+    #[ORM\ManyToOne(inversedBy: 'albums')]
+    private ?Labell $labell = null;
+
     public function __construct()
     {
         $this->morceaux = new ArrayCollection();
         $this->styles = new ArrayCollection();
+        $this->label = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,6 +160,49 @@ class Album
         if ($this->styles->removeElement($style)) {
             $style->removeAlbum($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Label>
+     */
+    public function getLabel(): Collection
+    {
+        return $this->label;
+    }
+
+
+    public function addLabel(Label $label): static
+    {
+        if (!$this->label->contains($label)) {
+            $this->label->add($label);
+            $label->setAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLabel(Label $label): static
+    {
+        if ($this->label->removeElement($label)) {
+            // set the owning side to null (unless already changed)
+            if ($label->getAlbum() === $this) {
+                $label->setAlbum(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLabell(): ?Labell
+    {
+        return $this->labell;
+    }
+
+    public function setLabell(?Labell $labell): static
+    {
+        $this->labell = $labell;
 
         return $this;
     }
